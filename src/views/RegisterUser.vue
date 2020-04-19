@@ -19,6 +19,11 @@
       <router-link to="/login">
         Already have account? Register
       </router-link>
+      <ul>
+        <li v-for="(error, index) in errors" :key="index">
+          <p>{{ error }}</p>
+        </li>
+      </ul>
     </form>
   </div>
 </template>
@@ -29,7 +34,8 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      errors: null
     }
   },
   methods: {
@@ -43,7 +49,17 @@ export default {
         .then(() => {
           this.$router.push({ name: 'dashboard' })
         })
+        .catch(err => {
+          console.log(err.response)
+          this.errors = err.response.data.errors
+        })
     }
   }
 }
 </script>
+
+<style scoped>
+ul {
+  list-style: none;
+}
+</style>
