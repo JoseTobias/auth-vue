@@ -15,6 +15,10 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Authorization'] = `Bearer ${
         userData.token
       }`
+    },
+    LOGOUT () {
+      localStorage.removeItem('user')
+      location.reload()
     }
   },
   actions: {
@@ -33,6 +37,9 @@ export default new Vuex.Store({
           console.log('user data is', data)
           commit('SET_USER_DATA', data)
         })
+    },
+    logout ({ commit }) {
+      commit('LOGOUT')
     }
   },
   getters: {
