@@ -1,4 +1,4 @@
-# authentication_course
+# auth-vue
 
 ## Project setup
 
